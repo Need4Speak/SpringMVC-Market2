@@ -3,6 +3,7 @@ package com.pancake.entity;
 import java.util.List;
 
 public class GoodForm {
+	private int goodId;
 	private String userName;
 	private String goodName;
 	private Double price;
@@ -30,11 +31,30 @@ public class GoodForm {
 		this.freight = freight;
 	}
 
+	public GoodForm(int goodId, String userName, String goodName, Double price,
+			List pictures, Double freight) {
+		super();
+		this.goodId = goodId;
+		this.userName = userName;
+		this.goodName = goodName;
+		this.price = price;
+		this.pictures = pictures;
+		this.freight = freight;
+	}
+
 	@Override
 	public String toString() {
 		return "GoodForm [userName=" + userName + ", goodName=" + goodName
 				+ ", price=" + price + ", pictures=" + pictures + ", freight="
 				+ freight + "]";
+	}
+
+	public int getGoodId() {
+		return goodId;
+	}
+
+	public void setGoodId(int goodId) {
+		this.goodId = goodId;
 	}
 
 	public String getGoodName() {

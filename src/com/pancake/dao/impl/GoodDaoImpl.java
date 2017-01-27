@@ -59,7 +59,7 @@ public class GoodDaoImpl implements GoodDao{
 			Session session = HibernateSessionFactory.getSession();
 //			Transaction transaction = session.beginTransaction();
 			
-			Good instance = (Good) session.get("com.entity.Good", id);
+			Good instance = (Good) session.get("com.pancake.entity.Good", id);
 			
 //			transaction.commit();
 //			HibernateSessionFactory.closeSession();

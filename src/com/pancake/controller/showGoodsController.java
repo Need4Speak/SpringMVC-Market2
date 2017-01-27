@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,21 +20,27 @@ public class showGoodsController {
 			.getLog(showGoodsController.class);
 	
 	@RequestMapping(value = "/showGoods")
-//	public String inputProduct(Model model) {
-//		logger.info("InputProductController called");
-//	  	ShowGoodServiceImpl sgsi = new ShowGoodServiceImpl();
-//		List<GoodForm> goodForms = sgsi.showGoodService();
-//		model.addAttribute(goodForms);
-//		return "showGoods";
-//	}
 	public ModelAndView inputProduct(HttpServletRequest request,HttpServletResponse response) {
 		logger.info("InputProductController called");
 		ModelAndView mav = new ModelAndView("showGoods"); 
 		
 	  	ShowGoodServiceImpl sgsi = new ShowGoodServiceImpl();
-		List<GoodForm> goodForms = sgsi.showGoodService();
+		List<GoodForm> goodForms = sgsi.showGoodWithSeller();
 		
 		mav.addObject("goodForms", goodForms); 
+		return mav;
+	}
+	
+	@RequestMapping(value = "/goodInfo")
+	public ModelAndView goodInfo(HttpServletRequest request,HttpServletResponse response) {
+		logger.info("InputProductController called");
+		ModelAndView mav = new ModelAndView("goodInfo"); 
+		
+		int goodId = Integer.parseInt(request.getParameter("goodId"));
+	  	ShowGoodServiceImpl sgsi = new ShowGoodServiceImpl();
+		GoodForm goodForm = sgsi.showGoodInfo(goodId);
+		
+		mav.addObject("goodForm", goodForm); 
 		return mav;
 	}
 }

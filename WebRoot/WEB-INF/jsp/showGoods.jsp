@@ -48,10 +48,6 @@
   </head>
   
   <body>
-  	<%
-  	//ShowGoodServiceImpl sgsi = new ShowGoodServiceImpl();
-	//List<GoodForm> goodForms = sgsi.showGoodService();
-	%>
     <div  class="divcssTop">二手交易网站</div>
     
     <div  class="divcssMiddle">
@@ -66,7 +62,8 @@
     </div>
     
     <div  class="divcssBottom">
-    <c:forEach items="${goodForms}" var="goodForm"> 
+    <c:forEach items="${goodForms}" var="goodForm">
+    	<a href="goodInfo?goodId=${goodForm.goodId}">  
 		<table width="250px" height="150px" border="1" cellspacing="0" cellpadding="0">
 		  <tr height="20px">
 		    <td >卖家昵称:${goodForm.userName}</td>
@@ -80,6 +77,7 @@
 		    <td colspan="2">商品名:${goodForm.goodName}, 商品详细介绍</td>
 		  </tr>
 		</table>
+		</a>
 	</c:forEach> 
     </div>
     

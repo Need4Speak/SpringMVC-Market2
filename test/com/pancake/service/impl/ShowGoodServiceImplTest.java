@@ -13,11 +13,11 @@ public class ShowGoodServiceImplTest {
 	@Test
 	public void testShowGoodService() {
 		ShowGoodServiceImpl sgsi = new ShowGoodServiceImpl();
-		List<GoodForm> goodForms = sgsi.showGoodService();
-		for (GoodForm aGoodForm : goodForms) {
-			System.out.println(aGoodForm);
-		}
-		// fail("Not yet implemented");
+//		//List<GoodForm> goodForms = sgsi.showGoodService();
+//		for (GoodForm aGoodForm : goodForms) {
+//			System.out.println(aGoodForm);
+//		}
+//		// fail("Not yet implemented");
 	}
 
 }
