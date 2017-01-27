@@ -49,11 +49,8 @@
   
   <body>
   	<%
-  	ShowGoodServiceImpl sgsi = new ShowGoodServiceImpl();
-	List<GoodForm> goodForms = sgsi.showGoodService();
-		for(GoodForm aGoodForm:goodForms) {
-			System.out.println(aGoodForm);
-		}
+  	//ShowGoodServiceImpl sgsi = new ShowGoodServiceImpl();
+	//List<GoodForm> goodForms = sgsi.showGoodService();
 	%>
     <div  class="divcssTop">二手交易网站</div>
     
