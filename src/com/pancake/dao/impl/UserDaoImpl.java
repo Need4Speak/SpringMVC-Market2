@@ -112,7 +112,11 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	public User findByUserName(Object userName) {
-		User user = (User) findByProperty("userName", userName).get(0);
+		User user = null;
+		if(0 != findByProperty("userName", userName).size())
+		{
+			user = (User) findByProperty("userName", userName).get(0);
+		}
 		HibernateSessionFactory.closeSession();
 		return user;
 	}

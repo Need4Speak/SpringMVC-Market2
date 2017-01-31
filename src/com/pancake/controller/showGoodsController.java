@@ -31,7 +31,7 @@ public class showGoodsController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/goodInfo")
+	@RequestMapping(value = "/goodInfoController")
 	public ModelAndView goodInfo(HttpServletRequest request,HttpServletResponse response) {
 		logger.info("InputProductController called");
 		ModelAndView mav = new ModelAndView("goodInfo"); 

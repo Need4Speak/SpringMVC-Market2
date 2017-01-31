@@ -61,7 +61,7 @@
     
     <div  class="divcssBottom">
     <c:forEach items="${goodForms}" var="goodForm">
-    	<a href="goodInfo?goodId=${goodForm.goodId}">  
+    	<a href="goodInfoController?goodId=${goodForm.goodId}">  
 		<table width="250px" height="150px" border="1" cellspacing="0" cellpadding="0">
 		  <tr height="20px">
 		    <td >卖家昵称:${goodForm.userName}</td>
