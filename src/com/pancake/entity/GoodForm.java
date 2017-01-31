@@ -9,6 +9,7 @@ public class GoodForm {
 	private Double price;
 	private List pictures;
 	private Double freight;
+	private int status;
 
 	public GoodForm() {
 	}
@@ -32,7 +33,7 @@ public class GoodForm {
 	}
 
 	public GoodForm(int goodId, String userName, String goodName, Double price,
-			List pictures, Double freight) {
+			List pictures, Double freight, int status) {
 		super();
 		this.goodId = goodId;
 		this.userName = userName;
@@ -40,6 +41,7 @@ public class GoodForm {
 		this.price = price;
 		this.pictures = pictures;
 		this.freight = freight;
+		this.status = status;
 	}
 
 	@Override
@@ -95,6 +97,14 @@ public class GoodForm {
 
 	public void setFreight(Double freight) {
 		this.freight = freight;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

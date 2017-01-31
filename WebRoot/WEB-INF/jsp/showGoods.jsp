@@ -61,21 +61,23 @@
     
     <div  class="divcssBottom">
     <c:forEach items="${goodForms}" var="goodForm">
-    	<a href="goodInfoController?goodId=${goodForm.goodId}">  
-		<table width="250px" height="150px" border="1" cellspacing="0" cellpadding="0">
-		  <tr height="20px">
-		    <td >卖家昵称:${goodForm.userName}</td>
-		    <td>价格:${goodForm.price}</td>
-		  </tr>
-		  <tr>
-		    <td width="125px"><img src="images/${goodForm.pictures[0]}" border="0" width="120px" height="90px" /></td>
-		    <td><img src="images/${goodForm.pictures[1]}" border="0" width="120px" height="90px" /></td>
-		  </tr>
-		  <tr height="50px">
-		    <td colspan="2">商品名:${goodForm.goodName}, 商品详细介绍</td>
-		  </tr>
-		</table>
-		</a>
+    	<c:if test="${goodForm.status == 1}"> 
+	    	<a href="goodInfoController?goodId=${goodForm.goodId}">  
+			<table width="250px" height="150px" border="1" cellspacing="0" cellpadding="0">
+			  <tr height="20px">
+			    <td >卖家昵称:${goodForm.userName}</td>
+			    <td>价格:${goodForm.price}</td>
+			  </tr>
+			  <tr>
+			    <td width="125px"><img src="images/${goodForm.pictures[0]}" border="0" width="120px" height="90px" /></td>
+			    <td><img src="images/${goodForm.pictures[1]}" border="0" width="120px" height="90px" /></td>
+			  </tr>
+			  <tr height="50px">
+			    <td colspan="2">商品名:${goodForm.goodName}, 商品详细介绍</td>
+			  </tr>
+			</table>
+			</a>
+		</c:if>
 	</c:forEach> 
     </div>
     

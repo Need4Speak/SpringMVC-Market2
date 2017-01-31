@@ -14,6 +14,8 @@ public class Good implements java.io.Serializable {
 	private Double price;
 	private String pictures;
 	private Double freight;
+	private String description;
+	private Integer status;
 
 	// Constructors
 
@@ -31,12 +33,14 @@ public class Good implements java.io.Serializable {
 
 	/** full constructor */
 	public Good(User user, String name, Double price, String pictures,
-			Double freight) {
+			Double freight, String description, Integer status) {
 		this.user = user;
 		this.name = name;
 		this.price = price;
 		this.pictures = pictures;
 		this.freight = freight;
+		this.description = description;
+		this.status = status;
 	}
 
 	// Property accessors
@@ -87,6 +91,22 @@ public class Good implements java.io.Serializable {
 
 	public void setFreight(Double freight) {
 		this.freight = freight;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 }

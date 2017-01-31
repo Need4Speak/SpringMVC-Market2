@@ -17,7 +17,7 @@ import com.pancake.service.impl.ShowGoodServiceImpl;
 @Controller
 public class LogController {
 	private static final Log logger = LogFactory
-			.getLog(showGoodsController.class);
+			.getLog(ShowGoodsController.class);
 
 	@RequestMapping(value = "/loginBarController")
 	public String loginBar() {

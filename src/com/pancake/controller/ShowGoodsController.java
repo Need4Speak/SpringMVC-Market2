@@ -15,9 +15,9 @@ import com.pancake.entity.GoodForm;
 import com.pancake.service.impl.ShowGoodServiceImpl;
 
 @Controller
-public class showGoodsController {
+public class ShowGoodsController {
 	private static final Log logger = LogFactory
-			.getLog(showGoodsController.class);
+			.getLog(ShowGoodsController.class);
 	
 	@RequestMapping(value = "/showGoodsController")
 	public ModelAndView inputProduct(HttpServletRequest request,HttpServletResponse response) {

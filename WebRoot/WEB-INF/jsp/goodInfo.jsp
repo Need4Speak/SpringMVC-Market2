@@ -29,7 +29,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </c:forEach> 
 		  <tr>
 		    <td width="125px"><a href="showGoodsController">返回</a></td>
-		    <td width="125px"><a href="<%=basePath %>servlet/PlaceOrderServlet?goodId=${goodForm.goodId}">购买</a></td>
+		    
+		   	<c:choose>
+			    <c:when test="${userName != null}">
+			    	<td width="125px"><a href="tryPlaceOrderController?goodId=${goodForm.goodId}">购买</a></td>
+			    </c:when>
+			    <c:otherwise>
+			    	<td width="125px"><a href="loginBarController">登录</a></td>
+    			</c:otherwise>
+			</c:choose>
+
 		  </tr>
 		</table>
     </fieldset>

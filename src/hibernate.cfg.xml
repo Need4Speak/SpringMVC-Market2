@@ -23,6 +23,7 @@
 		<property name="show_sql">true</property>
 		<mapping resource="com/pancake/entity/User.hbm.xml" />
 		<mapping resource="com/pancake/entity/Good.hbm.xml" />
+		<mapping resource="com/pancake/entity/OrderTable.hbm.xml" />
 
 	</session-factory>
 
