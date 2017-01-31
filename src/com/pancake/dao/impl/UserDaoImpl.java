@@ -92,4 +92,28 @@ public class UserDaoImpl implements UserDao{
 			throw re;
 		}
 	}
+	
+	public List findByProperty(String propertyName, Object value) {
+//		log.debug("finding User instance with property: " + propertyName
+//				+ ", value: " + value);
+		try {
+			String queryString = "from User as model where model."
+					+ propertyName + "= ?";
+			Session session = HibernateSessionFactory.getSession();
+			
+			Query queryObject = session.createQuery(queryString);
+			queryObject.setParameter(0, value);
+			
+			return queryObject.list();
+		} catch (RuntimeException re) {
+//			log.error("find by property name failed", re);
+			throw re;
+		}
+	}
+
+	public User findByUserName(Object userName) {
+		User user = (User) findByProperty("userName", userName).get(0);
+		HibernateSessionFactory.closeSession();
+		return user;
+	}
 }

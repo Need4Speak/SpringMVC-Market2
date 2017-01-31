@@ -19,7 +19,7 @@ public class showGoodsController {
 	private static final Log logger = LogFactory
 			.getLog(showGoodsController.class);
 	
-	@RequestMapping(value = "/showGoods")
+	@RequestMapping(value = "/showGoodsController")
 	public ModelAndView inputProduct(HttpServletRequest request,HttpServletResponse response) {
 		logger.info("InputProductController called");
 		ModelAndView mav = new ModelAndView("showGoods"); 

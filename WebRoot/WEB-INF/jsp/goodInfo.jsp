@@ -12,9 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <style type="text/css">@import url(css/main.css);</style>
 </head>
 <body>
-
 <div id="global">
-<form action="showGoods" method="post">
+<form>
+	<%@ include file="userLoginBar.jsp"%>
     <fieldset>
         <legend>商品详情</legend>
         <table width="250px">
@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  </tr>
 		  </c:forEach> 
 		  <tr>
-		    <td width="125px"><a href="showGoods">返回</a></td>
+		    <td width="125px"><a href="showGoodsController">返回</a></td>
 		    <td width="125px"><a href="<%=basePath %>servlet/PlaceOrderServlet?goodId=${goodForm.goodId}">购买</a></td>
 		  </tr>
 		</table>

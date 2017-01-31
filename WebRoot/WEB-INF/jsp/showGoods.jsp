@@ -54,9 +54,7 @@
         <table width="250px" height="40px" border="1" cellspacing="0" cellpadding="0">
         	<tr>
 			    <td >最新</td>
-			    <!--  
-			    <td><jsp:include page="userLoginBar.jsp"></jsp:include></td>
-			    -->
+			    <td><%@ include file="userLoginBar.jsp"%></td>
 		  	</tr>
         </table>
     </div>

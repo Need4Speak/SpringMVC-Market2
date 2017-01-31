@@ -10,10 +10,10 @@
 <div id="global">
 <form action="showGoodsController" method="post">
     <fieldset>
-        <legend>四川大学易物网</legend>
+        <legend>登陆成功</legend>
             <p id="buttons">
                 <input id="submit" type="submit" tabindex="5" 
-                    value="进入网站">
+                    value="回到首页">
             </p>
     </fieldset>
 </form>

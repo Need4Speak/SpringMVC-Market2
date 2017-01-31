@@ -9,4 +9,5 @@ public interface UserDao {
 	public void delete(User persistentInstance);
 	public User findById(java.lang.Integer id);
 	public List findAll();
+	public User findByUserName(Object userName);
 }
