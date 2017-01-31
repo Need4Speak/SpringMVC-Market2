@@ -1,9 +1,11 @@
 package com.pancake.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.pancake.dao.impl.UserDaoImpl;
 import com.pancake.entity.User;
 import com.pancake.service.LoginCheckService;
-
+@Service
 public class LoginCheckServiceImpl implements LoginCheckService {
 
 	@Override

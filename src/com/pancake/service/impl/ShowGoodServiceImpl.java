@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import javassist.compiler.Javac;
 
 import com.pancake.dao.impl.GoodDaoImpl;
@@ -14,6 +16,7 @@ import com.pancake.entity.GoodForm;
 import com.pancake.service.ShowGoodService;
 import com.pancake.util.SplitStrIntoList;
 
+@Service
 public class ShowGoodServiceImpl implements ShowGoodService {
 
 	private GoodDaoImpl goodDaoImpl = new GoodDaoImpl();
@@ -52,7 +55,8 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 
 			aGoodForm = new GoodForm(eachGood.getGoodId(), eachGood.getUser()
 					.getUserName(), eachGood.getName(), eachGood.getPrice(),
-					goodPicturesList, eachGood.getFreight(), eachGood.getStatus());
+					goodPicturesList, eachGood.getFreight(),
+					eachGood.getStatus());
 			goodForms.add(aGoodForm);
 
 			// goodPicturesList ponit to another list.

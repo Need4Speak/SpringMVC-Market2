@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +19,9 @@ import com.pancake.service.impl.ShowGoodServiceImpl;
 public class LogController {
 	private static final Log logger = LogFactory
 			.getLog(ShowGoodsController.class);
+
+	@Autowired
+	private LoginCheckServiceImpl lcsi;
 
 	@RequestMapping(value = "/loginBarController")
 	public String loginBar() {
@@ -32,13 +36,14 @@ public class LogController {
 
 		String userName = request.getParameter("userName").trim();
 		String password = request.getParameter("password").trim();
-		LoginCheckServiceImpl lcsi = new LoginCheckServiceImpl();
+
 		boolean loginCondition = lcsi.compareLoginInfo(userName, password);
 
 		// ModelAndView mav = new ModelAndView("showGoods");
 		if (loginCondition) {
 			request.getSession().setAttribute("userName", userName);
-//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			// request.getRequestDispatcher("/index.jsp").forward(request,
+			// response);
 			return "loginSuccess";
 		} else {
 			return "loginFail";

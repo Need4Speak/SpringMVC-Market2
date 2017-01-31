@@ -14,6 +14,7 @@
         
     <!-- component-scan: 指示SpringMVC扫面目标包中的类  -->
     <context:component-scan base-package="com.pancake.controller"/>
+    <context:component-scan base-package="com.pancake.service"/>
     <!--  
     <context:component-scan base-package="service"/> 
     --> 

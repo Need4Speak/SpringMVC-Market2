@@ -3,6 +3,8 @@ package com.pancake.service.impl;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import org.springframework.stereotype.Service;
+
 import com.pancake.dao.impl.GoodDaoImpl;
 import com.pancake.dao.impl.OrderTableDaoImpl;
 import com.pancake.dao.impl.UserDaoImpl;
@@ -10,7 +12,7 @@ import com.pancake.entity.Good;
 import com.pancake.entity.OrderTable;
 import com.pancake.entity.User;
 import com.pancake.service.ShowOrderService;
-
+@Service
 public class ShowOrderServiceImpl implements ShowOrderService {
 
 	private OrderTableDaoImpl otdi = new OrderTableDaoImpl();
