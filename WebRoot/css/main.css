@@ -32,6 +32,19 @@ form label {
     padding: 2px;
 }
 
+table td {
+	border: 1px solid #dedede;
+	background: MistyRose;
+	/* for web colors visit http://en.wikipedia.org/wiki/Web_colors */
+}
+
 #buttons {
     text-align: right;
+}
+#errors, li {
+	color: red;
+}
+.error {
+    color: red;
+    font-size: 9pt;	
 }

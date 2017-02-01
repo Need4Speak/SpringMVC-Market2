@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.pancake.dao.GoodDao;
 import com.pancake.entity.Good;
+import com.pancake.entity.User;
 import com.pancake.util.HibernateSessionFactory;
 
 public class GoodDaoImpl implements GoodDao{
@@ -39,6 +40,25 @@ public class GoodDaoImpl implements GoodDao{
 			Session session = HibernateSessionFactory.getSession();
 			Transaction transaction = session.beginTransaction();
 			session.delete(persistentInstance);
+			transaction.commit();
+			HibernateSessionFactory.closeSession();
+			
+			//log.debug("delete successful");
+		} catch (RuntimeException re) {
+			//log.error("delete failed", re);
+			throw re;
+		}
+	}
+	
+	/**
+	 * @param persistentInstance
+	 */
+	public void update(Good persistentInstance) {
+//		log.debug("deleting Good instance");
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction transaction = session.beginTransaction();
+			session.update(persistentInstance);
 			transaction.commit();
 			HibernateSessionFactory.closeSession();
 			
@@ -87,6 +107,45 @@ public class GoodDaoImpl implements GoodDao{
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			//log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findByProperty(String propertyName, Object value) {
+//		log.debug("finding Good instance with property: " + propertyName
+//				+ ", value: " + value);
+		try {
+			String queryString = "from Good as model where model."
+					+ propertyName + "= ?";
+			Session session = HibernateSessionFactory.getSession();
+			
+			Query queryObject = session.createQuery(queryString);
+			queryObject.setParameter(0, value);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+//			log.error("find by property name failed", re);
+			throw re;
+		}
+	}
+	
+	public List findByUser(User user) {
+		return findByProperty("user", user);
+	}
+	
+	public Good merge(Good detachedInstance) {
+//		log.debug("merging Good instance");
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			Good result = (Good) session.merge(detachedInstance);
+			
+			transaction.commit();
+			HibernateSessionFactory.closeSession();
+//			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+//			log.error("merge failed", re);
 			throw re;
 		}
 	}

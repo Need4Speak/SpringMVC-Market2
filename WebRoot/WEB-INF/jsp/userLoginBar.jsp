@@ -7,6 +7,8 @@
 	    	<a href="loginBarController">登录</a>
 	    </c:when>
 	    <c:otherwise>
-	    	${userNameInSession}已登录，<a href="logoutController?userName=${userNameInSession}">注销</a>
+	    	${userNameInSession}已登录，
+	    	<a href="managementController">管理</a>
+	    	<a href="logoutController?userName=${userNameInSession}">注销</a>
 	    </c:otherwise>
 	</c:choose>  	
