@@ -26,7 +26,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  <tr>
 				<td colspan="2"><img src="images/${picture}" border="0" width="120px" height="90px" /></td>
 			  </tr>
-		  </c:forEach> 
+		  </c:forEach>
+		  <tr>
+		  	<td colspan="2">商品详情</td>
+		  </tr>
 		  <tr>
 		    <td width="125px"><a href="showGoodsController">返回</a></td>
 		    
@@ -35,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	<td width="125px"><a href="tryPlaceOrderController?goodId=${goodForm.goodId}">购买</a></td>
 			    </c:when>
 			    <c:otherwise>
-			    	<td width="125px"><a href="loginBarController">登录</a></td>
+			    	<td width="125px"><a href="loginBarController">登录后购买</a></td>
     			</c:otherwise>
 			</c:choose>
 

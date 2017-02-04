@@ -43,6 +43,16 @@ public class GoodController {
 		model.addAttribute("good", good);
 		return "GoodEditForm";
 	}
+	
+	@RequestMapping(value = "/good_delete/{id}")
+	public String deleteGood(Model model, @PathVariable int id) {
+		Good good = goodService.get(id);
+		//0: can't buy. Don't delete the good info.
+		good.setStatus(0);
+		goodService.update(good);
+		model.addAttribute("good", good);
+		return "redirect:/good_list";
+	}
 
 	@RequestMapping(value = "/good_save")
 	public String saveGood(@ModelAttribute Good good, HttpSession session) {

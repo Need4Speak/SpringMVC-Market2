@@ -21,12 +21,15 @@
     <th>&nbsp;</th>
 </tr>
 <c:forEach items="${goods}" var="good">
+<c:if test="${good.status == 1}"> 
     <tr>
         <td>${good.name}</td>
         <td>${good.price}</td>
         <td>${good.freight}</td>
         <td><a href="good_edit/${good.goodId}">修改</a></td>
+        <td><a href="good_delete/${good.goodId}">删除</a></td>
     </tr>
+</c:if>
 </c:forEach>
 </table>
 </div>
