@@ -17,6 +17,8 @@ public class User implements java.io.Serializable {
 	private Integer phoneNumber;
 	private String gender;
 	private String userPhoto;
+	private Set orderTablesForBuyerId = new HashSet(0);
+	private Set orderTablesForSellerId = new HashSet(0);
 	private Set goods = new HashSet(0);
 
 	// Constructors
@@ -33,12 +35,15 @@ public class User implements java.io.Serializable {
 
 	/** full constructor */
 	public User(String userName, String password, Integer phoneNumber,
-			String gender, String userPhoto, Set goods) {
+			String gender, String userPhoto, Set orderTablesForBuyerId,
+			Set orderTablesForSellerId, Set goods) {
 		this.userName = userName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
 		this.gender = gender;
 		this.userPhoto = userPhoto;
+		this.orderTablesForBuyerId = orderTablesForBuyerId;
+		this.orderTablesForSellerId = orderTablesForSellerId;
 		this.goods = goods;
 	}
 
@@ -90,6 +95,22 @@ public class User implements java.io.Serializable {
 
 	public void setUserPhoto(String userPhoto) {
 		this.userPhoto = userPhoto;
+	}
+
+	public Set getOrderTablesForBuyerId() {
+		return this.orderTablesForBuyerId;
+	}
+
+	public void setOrderTablesForBuyerId(Set orderTablesForBuyerId) {
+		this.orderTablesForBuyerId = orderTablesForBuyerId;
+	}
+
+	public Set getOrderTablesForSellerId() {
+		return this.orderTablesForSellerId;
+	}
+
+	public void setOrderTablesForSellerId(Set orderTablesForSellerId) {
+		this.orderTablesForSellerId = orderTablesForSellerId;
 	}
 
 	public Set getGoods() {

@@ -25,6 +25,18 @@
         <property name="userPhoto" type="java.lang.String">
             <column name="userPhoto" />
         </property>
+        <set name="orderTablesForBuyerId" inverse="true">
+            <key>
+                <column name="buyerId" not-null="true" />
+            </key>
+            <one-to-many class="com.pancake.entity.OrderTable" />
+        </set>
+        <set name="orderTablesForSellerId" inverse="true">
+            <key>
+                <column name="sellerId" not-null="true" />
+            </key>
+            <one-to-many class="com.pancake.entity.OrderTable" />
+        </set>
         <set name="goods" inverse="true">
             <key>
                 <column name="userId" />

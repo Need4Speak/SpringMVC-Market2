@@ -11,9 +11,9 @@ public class OrderTable implements java.io.Serializable {
 	// Fields
 
 	private Integer orderId;
-	private Integer goodId;
-	private Integer buyerId;
-	private Integer sellerId;
+	private User userByBuyerId;
+	private User userBySellerId;
+	private Good good;
 	private Timestamp creationTime;
 	private Timestamp cancelTime;
 	private Integer status;
@@ -28,19 +28,19 @@ public class OrderTable implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public OrderTable(Integer goodId, Integer buyerId, Integer sellerId) {
-		this.goodId = goodId;
-		this.buyerId = buyerId;
-		this.sellerId = sellerId;
+	public OrderTable(User userByBuyerId, User userBySellerId, Good good) {
+		this.userByBuyerId = userByBuyerId;
+		this.userBySellerId = userBySellerId;
+		this.good = good;
 	}
 
 	/** full constructor */
-	public OrderTable(Integer goodId, Integer buyerId, Integer sellerId,
+	public OrderTable(User userByBuyerId, User userBySellerId, Good good,
 			Timestamp creationTime, Timestamp cancelTime, Integer status,
 			String deliveryAddress, Double freight, String description) {
-		this.goodId = goodId;
-		this.buyerId = buyerId;
-		this.sellerId = sellerId;
+		this.userByBuyerId = userByBuyerId;
+		this.userBySellerId = userBySellerId;
+		this.good = good;
 		this.creationTime = creationTime;
 		this.cancelTime = cancelTime;
 		this.status = status;
@@ -59,28 +59,28 @@ public class OrderTable implements java.io.Serializable {
 		this.orderId = orderId;
 	}
 
-	public Integer getGoodId() {
-		return this.goodId;
+	public User getUserByBuyerId() {
+		return this.userByBuyerId;
 	}
 
-	public void setGoodId(Integer goodId) {
-		this.goodId = goodId;
+	public void setUserByBuyerId(User userByBuyerId) {
+		this.userByBuyerId = userByBuyerId;
 	}
 
-	public Integer getBuyerId() {
-		return this.buyerId;
+	public User getUserBySellerId() {
+		return this.userBySellerId;
 	}
 
-	public void setBuyerId(Integer buyerId) {
-		this.buyerId = buyerId;
+	public void setUserBySellerId(User userBySellerId) {
+		this.userBySellerId = userBySellerId;
 	}
 
-	public Integer getSellerId() {
-		return this.sellerId;
+	public Good getGood() {
+		return this.good;
 	}
 
-	public void setSellerId(Integer sellerId) {
-		this.sellerId = sellerId;
+	public void setGood(Good good) {
+		this.good = good;
 	}
 
 	public Timestamp getCreationTime() {

@@ -33,5 +33,11 @@
                 <comment>1: can buy; 0: can't buy</comment>
             </column>
         </property>
+        <set name="orderTables" inverse="true">
+            <key>
+                <column name="goodId" not-null="true" />
+            </key>
+            <one-to-many class="com.pancake.entity.OrderTable" />
+        </set>
     </class>
 </hibernate-mapping>

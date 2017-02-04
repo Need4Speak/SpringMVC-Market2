@@ -10,15 +10,15 @@
             <column name="orderId" />
             <generator class="increment" />
         </id>
-        <property name="goodId" type="java.lang.Integer">
-            <column name="goodId" not-null="true" />
-        </property>
-        <property name="buyerId" type="java.lang.Integer">
+        <many-to-one name="userByBuyerId" class="com.pancake.entity.User" fetch="select">
             <column name="buyerId" not-null="true" />
-        </property>
-        <property name="sellerId" type="java.lang.Integer">
+        </many-to-one>
+        <many-to-one name="userBySellerId" class="com.pancake.entity.User" fetch="select">
             <column name="sellerId" not-null="true" />
-        </property>
+        </many-to-one>
+        <many-to-one name="good" class="com.pancake.entity.Good" fetch="select">
+            <column name="goodId" not-null="true" />
+        </many-to-one>
         <property name="creationTime" type="java.sql.Timestamp">
             <column name="creationTime" length="19" />
         </property>

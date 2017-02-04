@@ -26,7 +26,7 @@ import com.pancake.util.HibernateSessionFactory;
  * @see com.pancake.entity.OrderTable
  * @author MyEclipse Persistence Tools
  */
-public class OrderTableDaoImpl implements OrderTableDao{
+public class OrderTableDaoImpl implements OrderTableDao {
 	// private static final Logger log = LoggerFactory
 	// .getLogger(OrderTableDaoImpl.class);
 	// property constants
@@ -38,6 +38,7 @@ public class OrderTableDaoImpl implements OrderTableDao{
 	public static final String FREIGHT = "freight";
 	public static final String DESCRIPTION = "description";
 
+	@Override
 	public void save(OrderTable transientInstance) {
 		// log.debug("saving OrderTable instance");
 		try {
@@ -55,6 +56,7 @@ public class OrderTableDaoImpl implements OrderTableDao{
 		}
 	}
 
+	@Override
 	public void delete(OrderTable persistentInstance) {
 		// log.debug("deleting OrderTable instance");
 		try {
@@ -72,6 +74,7 @@ public class OrderTableDaoImpl implements OrderTableDao{
 		}
 	}
 
+	@Override
 	public OrderTable findById(java.lang.Integer id) {
 		// log.debug("getting OrderTable instance with id: " + id);
 		try {
@@ -86,6 +89,7 @@ public class OrderTableDaoImpl implements OrderTableDao{
 		}
 	}
 
+	@Override
 	public List findByExample(OrderTable instance) {
 		// log.debug("finding OrderTable instance by example");
 		try {
@@ -103,6 +107,7 @@ public class OrderTableDaoImpl implements OrderTableDao{
 		}
 	}
 
+	@Override
 	public List findByProperty(String propertyName, Object value) {
 		// log.debug("finding OrderTable instance with property: " +
 		// propertyName
@@ -121,34 +126,42 @@ public class OrderTableDaoImpl implements OrderTableDao{
 		}
 	}
 
-	public List findByGoodId(Object goodId) {
-		return findByProperty(GOOD_ID, goodId);
+	@Override
+	public List findByGood(Object good) {
+		return findByProperty("good", good);
 	}
 
-	public List findByBuyerId(Object buyerId) {
-		return findByProperty(BUYER_ID, buyerId);
+	@Override
+	public List findByBuyer(Object buyer) {
+		return findByProperty("userByBuyerId", buyer);
 	}
 
-	public List findBySellerId(Object sellerId) {
-		return findByProperty(SELLER_ID, sellerId);
+	@Override
+	public List findBySeller(Object seller) {
+		return findByProperty("userBySellerId", seller);
 	}
 
+	@Override
 	public List findByStatus(Object status) {
 		return findByProperty(STATUS, status);
 	}
 
+	@Override
 	public List findByDeliveryAddress(Object deliveryAddress) {
 		return findByProperty(DELIVERY_ADDRESS, deliveryAddress);
 	}
 
+	@Override
 	public List findByFreight(Object freight) {
 		return findByProperty(FREIGHT, freight);
 	}
 
+	@Override
 	public List findByDescription(Object description) {
 		return findByProperty(DESCRIPTION, description);
 	}
 
+	@Override
 	public List findAll() {
 		// log.debug("finding all OrderTable instances");
 		try {

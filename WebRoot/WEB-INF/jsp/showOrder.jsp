@@ -16,7 +16,7 @@
            	商品名称: ${goodForm.goodName} <br/>
            	总价: ${goodForm.price + goodForm.freight} ( 含${goodForm.freight}元运费 ) <br/>
            	<br/>
-		        收货人: ${orderForm.buyerId} <br/>
+		        收货人: ${orderForm.userByBuyerId.userName} <br/>
 		        联系方式: <br/>
 		        收货地址： ${orderForm.deliveryAddress} <br/>
 		        订单描述：${orderForm.description} <br/>

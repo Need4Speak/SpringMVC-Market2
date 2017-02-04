@@ -1,7 +1,10 @@
 package com.pancake.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pancake.entity.GoodForm;
 import com.pancake.entity.OrderTable;
+import com.pancake.service.ShowGoodService;
+import com.pancake.service.ShowOrderService;
+import com.pancake.service.UserService;
 import com.pancake.service.impl.ShowGoodServiceImpl;
 import com.pancake.service.impl.ShowOrderServiceImpl;
 
@@ -20,7 +26,11 @@ public class OrderController {
 	private static final Log logger = LogFactory
 			.getLog(ShowGoodsController.class);
 	@Autowired
-	private ShowGoodServiceImpl sgsi;
+	private ShowGoodService sgsi;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private ShowOrderService soService;
 
 	@RequestMapping(value = "/tryPlaceOrderController")
 	public ModelAndView tryPlaceOrder(HttpServletRequest request,
@@ -57,4 +67,17 @@ public class OrderController {
 		mav.addObject("orderForm", orderForm);
 		return mav;
 	}
+
+	@RequestMapping(value = "/orderListController")
+	public ModelAndView orderList(HttpSession session) {
+		logger.info("orderListController called");
+		ModelAndView mav = new ModelAndView("orderList");
+
+		String userName = ((String) session.getAttribute("userName")).trim();
+		List<OrderTable> orderList = soService.getOrderByBuyerName(userName);
+
+		mav.addObject("orderList", orderList);
+		return mav;
+	}
+
 }

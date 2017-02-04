@@ -1,5 +1,8 @@
 package com.pancake.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Good entity. @author MyEclipse Persistence Tools
  */
@@ -16,6 +19,7 @@ public class Good implements java.io.Serializable {
 	private Double freight;
 	private String description;
 	private Integer status;
+	private Set orderTables = new HashSet(0);
 
 	// Constructors
 
@@ -33,7 +37,7 @@ public class Good implements java.io.Serializable {
 
 	/** full constructor */
 	public Good(User user, String name, Double price, String pictures,
-			Double freight, String description, Integer status) {
+			Double freight, String description, Integer status, Set orderTables) {
 		this.user = user;
 		this.name = name;
 		this.price = price;
@@ -41,6 +45,7 @@ public class Good implements java.io.Serializable {
 		this.freight = freight;
 		this.description = description;
 		this.status = status;
+		this.orderTables = orderTables;
 	}
 
 	// Property accessors
@@ -107,6 +112,14 @@ public class Good implements java.io.Serializable {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Set getOrderTables() {
+		return this.orderTables;
+	}
+
+	public void setOrderTables(Set orderTables) {
+		this.orderTables = orderTables;
 	}
 
 }

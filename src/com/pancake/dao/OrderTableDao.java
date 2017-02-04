@@ -16,9 +16,9 @@ public interface OrderTableDao {
 	public OrderTable findById(java.lang.Integer id);
 	public List findByExample(OrderTable instance);
 	public List findByProperty(String propertyName, Object value);
-	public List findByGoodId(Object goodId);
-	public List findByBuyerId(Object buyerId);
-	public List findBySellerId(Object sellerId);
+	public List findByGood(Object good);
+	public List findByBuyer(Object buyer);
+	public List findBySeller(Object seller);
 	public List findByStatus(Object status);
 	public List findByDeliveryAddress(Object deliveryAddress);
 	public List findByFreight(Object freight);

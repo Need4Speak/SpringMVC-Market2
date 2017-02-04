@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  </tr>
 		  </c:forEach>
 		  <tr>
-		  	<td colspan="2">商品详情</td>
+		  	<td colspan="2">商品详情：</td>
 		  </tr>
 		  <tr>
 		    <td width="125px"><a href="showGoodsController">返回</a></td>

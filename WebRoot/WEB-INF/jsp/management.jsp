@@ -12,6 +12,7 @@
     <fieldset>
         <legend>信息管理</legend>
             <a href="good_list">发布管理</a> <br>
+            <a href="orderListController">订单管理</a> <br>
     </fieldset>
 </form>
 </div>
