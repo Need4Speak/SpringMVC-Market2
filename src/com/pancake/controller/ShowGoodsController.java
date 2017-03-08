@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pancake.entity.GoodForm;
+import com.pancake.entity.OrderTable;
+import com.pancake.entity.Page;
+import com.pancake.service.impl.PageServiceImpl;
 import com.pancake.service.impl.ShowGoodServiceImpl;
 
 @Controller
@@ -21,6 +24,8 @@ public class ShowGoodsController {
 			.getLog(ShowGoodsController.class);
 	@Autowired
 	private ShowGoodServiceImpl sgsi;
+	@Autowired
+	private PageServiceImpl psi;
 
 	@RequestMapping(value = "/showGoodsController")
 	public ModelAndView inputProduct(HttpServletRequest request,
@@ -46,4 +51,27 @@ public class ShowGoodsController {
 		mav.addObject("goodForm", goodForm);
 		return mav;
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(value = "/showAll.do")
+    public ModelAndView findAllCourse(HttpServletRequest request,
+            HttpServletResponse response) {
+		logger.info("InputProductController called");
+		ModelAndView mav = new ModelAndView("order_list_test");
+        try {
+            String pageNo = request.getParameter("pageNo");
+            logger.info("pageNo: " + pageNo);
+            if (pageNo == null) {
+                pageNo = "1";
+            }
+            Page page = psi.queryForPage(Integer.valueOf(pageNo), 3);
+            mav.addObject(page);
+            request.setAttribute("page", page);
+            List<OrderTable> order = page.getList();
+            mav.addObject(order);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
 }

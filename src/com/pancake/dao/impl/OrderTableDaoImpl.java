@@ -175,5 +175,30 @@ public class OrderTableDaoImpl implements OrderTableDao {
 			throw re;
 		}
 	}
+	
+	/**
+     * 分页查询
+     * @param hql 查询的条件
+     * @param offset 开始记录
+     * @param length 一次查询几条记录
+     * @return 返回查询记录集合
+     */
+	@Override
+	public List<OrderTable> queryPageList(int offset, int length) {
+        // TODO Auto-generated method stub
+        List<OrderTable> entitylist=null;
+        try{
+        	Session session = HibernateSessionFactory.getSession();
+            Query query = session.createQuery("from OrderTable");
+            query.setFirstResult(offset);
+            query.setMaxResults(length);
+            entitylist = query.list();
+            
+        }catch(RuntimeException re){
+            throw re;
+        }
+        
+        return entitylist;
+	}
 
 }

@@ -2,6 +2,7 @@ package com.pancake.dao.impl;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -42,5 +43,15 @@ public class OrderTableDaoImplTest {
 		}
 		
 	}
+	
+	@Test
+	public void testQueryForPage() {
+		int offset = 0;
+		int length = 3;
+		List<OrderTable> list = otdi.queryPageList(offset, length);
+		for (OrderTable orderTable : list) {
+			System.out.println("sys: " + orderTable.getOrderId());
+		}
+	} 
 
 }

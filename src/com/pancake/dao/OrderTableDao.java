@@ -24,4 +24,5 @@ public interface OrderTableDao {
 	public List findByFreight(Object freight);
 	public List findByDescription(Object description);
 	public List findAll();
+	public List<OrderTable> queryPageList(int offset, int length);
 }
