@@ -9,4 +9,5 @@ import com.pancake.entity.GoodForm;
 public interface ShowGoodService {
 	public List<GoodForm> showGoodWithSeller();
 	public GoodForm showGoodInfo(java.lang.Integer goodId);
+	public List<GoodForm> showGoodWithPage();
 }

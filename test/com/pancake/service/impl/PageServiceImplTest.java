@@ -9,7 +9,9 @@
 package com.pancake.service.impl;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.pancake.entity.OrderTable;
 import com.pancake.entity.Page;
 
 /**
@@ -17,12 +19,14 @@ import com.pancake.entity.Page;
  *
  */
 public class PageServiceImplTest {
-
+	@Autowired
+	private PageServiceImpl psi = new PageServiceImpl();
 	@Test
-	public void testQueryForPage() {
-		PageServiceImpl psi = new PageServiceImpl();
+	public void testQueryForOrderPage() {
+		
 		System.out.println("start debug.");
-		Page page = psi.queryForPage(1, 3);
+		@SuppressWarnings("rawtypes")
+		Page page = psi.queryForOrderPage(1, 3);
 		System.out.println(page.getPageSize());
 		System.out.println(page.getPageNo());
 		System.out.println(page.getTotalRecords());
@@ -31,6 +35,14 @@ public class PageServiceImplTest {
 //			
 //		}
 		System.out.println();
+	}
+	
+	@Test
+	public void testQueryForGoodPage() {
+		Page page = psi.queryForGoodPage(1, 3);
+		System.out.println(page.getPageSize());
+		System.out.println(page.getPageNo());
+		System.out.println(page.getTotalRecords());
 	}
 
 }

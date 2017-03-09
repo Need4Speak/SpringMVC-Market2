@@ -10,16 +10,19 @@ package com.pancake.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pancake.dao.impl.GoodDaoImpl;
 import com.pancake.dao.impl.OrderTableDaoImpl;
+import com.pancake.entity.Good;
 import com.pancake.entity.OrderTable;
 import com.pancake.entity.Page;
 import com.pancake.service.PageService;
 @Service
 public class PageServiceImpl implements PageService {
-	
 	private OrderTableDaoImpl otdi = new OrderTableDaoImpl();
+	private GoodDaoImpl gdi = new GoodDaoImpl();
 
 	/* 
 	 * @see com.pancake.service.PageService#queryForPage(int, int)
@@ -29,7 +32,7 @@ public class PageServiceImpl implements PageService {
      * @return 封闭了分页信息(包括记录集list)的Bean
 	 */
 	@Override
-	public Page<OrderTable> queryForPage(int currentPage, int pageSize) {
+	public Page<OrderTable> queryForOrderPage(int currentPage, int pageSize) {
 		Page<OrderTable> page = new Page<OrderTable>();        
 		//当前页开始记录
 		int offset = page.countOffset(currentPage,pageSize); 
@@ -45,5 +48,22 @@ public class PageServiceImpl implements PageService {
 	    
 	    return page;
 		}
+	
+	@Override
+	public Page<Good> queryForGoodPage(int currentPage, int pageSize) {
+		Page<Good> page = new Page<Good>();        
+		//当前页开始记录
+		int offset = page.countOffset(currentPage,pageSize); 
+		//分页查询结果集
+	    List<Good> list = gdi.queryPageList(offset, pageSize); 
+		//总记录数
+		int allRow = gdi.findAll().size();
 
+	    page.setPageNo(currentPage);
+	    page.setPageSize(pageSize);
+	    page.setTotalRecords(allRow);
+	    page.setList(list);
+	    
+	    return page;
+	}
 }

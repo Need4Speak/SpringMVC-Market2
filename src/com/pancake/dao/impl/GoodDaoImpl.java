@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.pancake.dao.GoodDao;
 import com.pancake.entity.Good;
+import com.pancake.entity.OrderTable;
 import com.pancake.entity.User;
 import com.pancake.util.HibernateSessionFactory;
 
@@ -148,5 +149,23 @@ public class GoodDaoImpl implements GoodDao{
 //			log.error("merge failed", re);
 			throw re;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Good> queryPageList(int offset, int length) {
+        List<Good> entitylist=null;
+        try{
+        	Session session = HibernateSessionFactory.getSession();
+            Query query = session.createQuery("from Good");
+            query.setFirstResult(offset);
+            query.setMaxResults(length);
+            entitylist = query.list();
+            
+        }catch(RuntimeException re){
+            throw re;
+        }
+        
+        return entitylist;
 	}
 }

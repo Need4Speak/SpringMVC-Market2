@@ -25,7 +25,7 @@ public class ShowGoodsController {
 	@Autowired
 	private ShowGoodServiceImpl sgsi;
 	@Autowired
-	private PageServiceImpl psi;
+	private PageServiceImpl psiot;
 
 	@RequestMapping(value = "/showGoodsController")
 	public ModelAndView inputProduct(HttpServletRequest request,
@@ -54,9 +54,9 @@ public class ShowGoodsController {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/showAll.do")
-    public ModelAndView findAllCourse(HttpServletRequest request,
+    public ModelAndView findAllOrder(HttpServletRequest request,
             HttpServletResponse response) {
-		logger.info("InputProductController called");
+		logger.info("FindAllOrder called");
 		ModelAndView mav = new ModelAndView("order_list_test");
         try {
             String pageNo = request.getParameter("pageNo");
@@ -64,7 +64,7 @@ public class ShowGoodsController {
             if (pageNo == null) {
                 pageNo = "1";
             }
-            Page page = psi.queryForPage(Integer.valueOf(pageNo), 3);
+            Page page = psiot.queryForOrderPage(Integer.valueOf(pageNo), 3);
             mav.addObject(page);
             request.setAttribute("page", page);
             List<OrderTable> order = page.getList();
