@@ -21,6 +21,7 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 
 	private GoodDaoImpl goodDaoImpl = new GoodDaoImpl();
 	private UserDaoImpl userDaoImpl = new UserDaoImpl();
+	private PageServiceImpl psi = new PageServiceImpl();
 
 	@Override
 	public List<GoodForm> showGoodWithSeller() {
@@ -77,17 +78,12 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 	}
 	
 	@Override
-	public List<GoodForm> showGoodWithPage() {
+	public List<GoodForm> showGoodWithPage(ArrayList<Good> goodsList) {
 
 		// Use to store good info with seller's info.
 		List<GoodForm> goodForms = new ArrayList<GoodForm>();
 		GoodForm aGoodForm = null;
 
-		// GoodDaoImpl goodDaoImpl = new GoodDaoImpl();
-		// UserDaoImpl userDaoImpl = new UserDaoImpl();
-
-		@SuppressWarnings("unchecked")
-		ArrayList<Good> goodsList = (ArrayList<Good>) goodDaoImpl.findAll();
 		Iterator<Good> goodsListIterator = goodsList.iterator();
 		Good eachGood = null;
 

@@ -1,5 +1,6 @@
 package com.pancake.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pancake.entity.Good;
 import com.pancake.entity.GoodForm;
 import com.pancake.entity.OrderTable;
 import com.pancake.entity.Page;
@@ -25,7 +27,7 @@ public class ShowGoodsController {
 	@Autowired
 	private ShowGoodServiceImpl sgsi;
 	@Autowired
-	private PageServiceImpl psiot;
+	private PageServiceImpl psi;
 
 	@RequestMapping(value = "/showGoodsController")
 	public ModelAndView inputProduct(HttpServletRequest request,
@@ -64,11 +66,33 @@ public class ShowGoodsController {
             if (pageNo == null) {
                 pageNo = "1";
             }
-            Page page = psiot.queryForOrderPage(Integer.valueOf(pageNo), 3);
+            Page page = psi.queryForOrderPage(Integer.valueOf(pageNo), 3);
             mav.addObject(page);
             request.setAttribute("page", page);
             List<OrderTable> order = page.getList();
             mav.addObject(order);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
+	
+	@RequestMapping(value = "/showAll")
+    public ModelAndView findAllGood(HttpServletRequest request,
+            HttpServletResponse response) {
+		logger.info("FindAllGood called");
+		ModelAndView mav = new ModelAndView("good_list_test");
+        try {
+            String pageNo = request.getParameter("pageNo");
+            logger.info("pageNo: " + pageNo);
+            if (pageNo == null) {
+                pageNo = "1";
+            }
+            Page page = psi.queryForGoodPage(Integer.valueOf(pageNo), 3);
+            mav.addObject(page);
+            List<GoodForm> goodForms = sgsi.showGoodWithPage((ArrayList<Good>) page.getList());
+            request.setAttribute("goodForms", goodForms);
+            mav.addObject(goodForms);
         } catch (Exception e) {
             e.printStackTrace();
         }
