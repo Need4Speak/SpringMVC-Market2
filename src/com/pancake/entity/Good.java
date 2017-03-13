@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Good entity. @author MyEclipse Persistence Tools
+ * AbstractGood entity provides the base persistence definition of the Good
+ * entity. @author MyEclipse Persistence Tools
  */
 
 public class Good implements java.io.Serializable {
@@ -12,6 +13,7 @@ public class Good implements java.io.Serializable {
 	// Fields
 
 	private Integer goodId;
+	private Classification classification;
 	private User user;
 	private String name;
 	private Double price;
@@ -34,10 +36,23 @@ public class Good implements java.io.Serializable {
 		this.pictures = pictures;
 		this.freight = freight;
 	}
-
+	
+	public Good(User user, String name, Double price, String pictures, Double freight, String description,
+			Integer status, Set orderTables) {
+		this.user = user;
+		this.name = name;
+		this.price = price;
+		this.pictures = pictures;
+		this.freight = freight;
+		this.description = description;
+		this.status = status;
+		this.orderTables = orderTables;
+	}
+	
 	/** full constructor */
-	public Good(User user, String name, Double price, String pictures,
+	public Good(Classification classification, User user, String name, Double price, String pictures,
 			Double freight, String description, Integer status, Set orderTables) {
+		this.classification = classification;
 		this.user = user;
 		this.name = name;
 		this.price = price;
@@ -56,6 +71,14 @@ public class Good implements java.io.Serializable {
 
 	public void setGoodId(Integer goodId) {
 		this.goodId = goodId;
+	}
+
+	public Classification getClassification() {
+		return this.classification;
+	}
+
+	public void setClassification(Classification classification) {
+		this.classification = classification;
 	}
 
 	public User getUser() {

@@ -73,7 +73,8 @@
 			    <td><img src="images/${goodForm.pictures[1]}" border="0" width="120px" height="90px" /></td>
 			  </tr>
 			  <tr height="50px">
-			    <td colspan="2">商品名:${goodForm.goodName}</td>
+			    <td>商品名:${goodForm.goodName}</td>
+			    <td>分类:${goodForm.classificationNameString}</td>
 			  </tr>
 			</table>
 			</a>

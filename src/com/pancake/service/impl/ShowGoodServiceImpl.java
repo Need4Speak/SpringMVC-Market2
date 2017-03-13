@@ -57,7 +57,7 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 			aGoodForm = new GoodForm(eachGood.getGoodId(), eachGood.getUser()
 					.getUserName(), eachGood.getName(), eachGood.getPrice(),
 					goodPicturesList, eachGood.getFreight(),
-					eachGood.getStatus());
+					eachGood.getStatus(), eachGood.getClassification().getClassificationName());
 			goodForms.add(aGoodForm);
 
 			// goodPicturesList ponit to another list.
@@ -73,7 +73,7 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 		List<String> picList = SplitStrIntoList.run(good.getPictures());
 		GoodForm goodForm = new GoodForm(good.getGoodId(), good.getUser()
 				.getUserName(), good.getName(), good.getPrice(), picList,
-				good.getFreight(), good.getStatus());
+				good.getFreight(), good.getStatus(), good.getClassification().getClassificationName());
 		return goodForm;
 	}
 	
@@ -106,7 +106,7 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 			aGoodForm = new GoodForm(eachGood.getGoodId(), eachGood.getUser()
 					.getUserName(), eachGood.getName(), eachGood.getPrice(),
 					goodPicturesList, eachGood.getFreight(),
-					eachGood.getStatus());
+					eachGood.getStatus(), eachGood.getClassification().getClassificationName());
 			goodForms.add(aGoodForm);
 
 			// goodPicturesList ponit to another list.

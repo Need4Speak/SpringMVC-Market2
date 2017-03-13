@@ -10,6 +10,9 @@
             <column name="goodId" />
             <generator class="increment" />
         </id>
+        <many-to-one name="classification" class="com.pancake.entity.Classification" fetch="select">
+            <column name="classification_id" />
+        </many-to-one>
         <many-to-one name="user" class="com.pancake.entity.User" fetch="select">
             <column name="userId" />
         </many-to-one>
