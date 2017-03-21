@@ -1,5 +1,10 @@
 package com.pancake.dao;
 
-public interface ClassificationDao {
+import java.util.List;
 
+import com.pancake.entity.Classification;
+
+public interface ClassificationDao {
+	public Classification findById(java.lang.Integer id);
+	public List findAll();
 }

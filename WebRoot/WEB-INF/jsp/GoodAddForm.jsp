@@ -33,6 +33,15 @@
             <label for="description">详细介绍: </label>
             <form:input id="description" path="description"/>
         </p>
+        <p>
+            <label for="description">分类: </label>
+            <label><input name="classification_id" type="radio" value="2" />电子产品 </label> 
+			<label><input name="classification_id" type="radio" value="3" />服装 </label> 
+			<label><input name="classification_id" type="radio" value="4" />化妆品 </label> 
+			<label><input name="classification_id" type="radio" value="5" />食品 </label> 
+			<label><input name="classification_id" type="radio" value="6" />图书 </label> 
+			<label><input name="classification_id" type="radio" value="1" />其它 </label>
+        </p>
         
         <p id="buttons">
             <input id="reset" type="reset" tabindex="4">

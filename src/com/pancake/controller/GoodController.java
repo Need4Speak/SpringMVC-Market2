@@ -11,6 +11,7 @@ import org.hibernate.service.jdbc.connections.internal.UserSuppliedConnectionPro
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.pancake.entity.Good;
 import com.pancake.entity.User;
+import com.pancake.service.ClassificationService;
 import com.pancake.service.GoodService;
 import com.pancake.service.UserService;
+import com.pancake.service.impl.ClassificationServiceImpl;
 
 @Controller
 public class GoodController {
@@ -28,6 +31,7 @@ public class GoodController {
 	private GoodService goodService;
 	@Autowired
 	private UserService userService;
+	private ClassificationServiceImpl classificationService = new ClassificationServiceImpl();
 
 	private static final Log logger = LogFactory.getLog(GoodController.class);
 
@@ -55,12 +59,13 @@ public class GoodController {
 	}
 
 	@RequestMapping(value = "/good_save")
-	public String saveGood(@ModelAttribute Good good, HttpSession session) {
+	public String saveGood(@ModelAttribute Good good, HttpSession session, HttpServletRequest request) {
 		logger.info("save Good called");
 		// Get user object by "userName" attr which is stored in session.
 		// Then add in to object good.
 		good.setUser(userService.getByName((String) session
 				.getAttribute("userName")));
+		good.setClassification(classificationService.getClassificationById(Integer.parseInt(request.getParameter("classification_id"))));
 		// 1 means the good can be selled, by default status=1.
 		good.setStatus(1);
 		goodService.save(good);
@@ -68,10 +73,11 @@ public class GoodController {
 	}
 
 	@RequestMapping(value = "/good_update")
-	public String updateGood(@ModelAttribute Good good, HttpSession session) {
+	public String updateGood(@ModelAttribute Good good, HttpSession session, HttpServletRequest request) {
 		// Don't no how to bound field "User user", use session temporary。
 		good.setUser(userService.getByName((String) session
 				.getAttribute("userName")));
+		good.setClassification(goodService.get(good.getGoodId()).getClassification());
 		goodService.update(good);
 		return "redirect:/good_list";
 	}
