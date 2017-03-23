@@ -24,11 +24,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </tr>
 		  <c:forEach items="${goodForm.pictures}" var="picture">
 			  <tr>
-				<td colspan="2"><img src="images/${picture}" border="0" width="120px" height="90px" /></td>
+				<td colspan="2"><img src="images/${goodForm.userName}/goodPics/${picture}" border="0" width="120px" height="90px" /></td>
 			  </tr>
 		  </c:forEach>
 		  <tr>
-		  	<td colspan="2">商品详情：</td>
+		  	<td colspan="2">商品详情：${goodForm.description}</td>
 		  </tr>
 		  <tr>
 		    <td width="125px"><a href="showGoodsController">返回</a></td>

@@ -11,6 +11,7 @@ public class GoodForm {
 	private Double freight;
 	private int status;
 	private String classificationNameString;
+	private String description;
 
 	public GoodForm() {
 	}
@@ -65,6 +66,31 @@ public class GoodForm {
 		this.freight = freight;
 		this.status = status;
 		this.classificationNameString = classificationNameString;
+	}
+
+	/**
+	 * @param goodId
+	 * @param userName
+	 * @param goodName
+	 * @param price
+	 * @param pictures
+	 * @param freight
+	 * @param status
+	 * @param classificationNameString
+	 * @param description
+	 */
+	public GoodForm(int goodId, String userName, String goodName, Double price, List pictures, Double freight,
+			int status, String classificationNameString, String description) {
+		super();
+		this.goodId = goodId;
+		this.userName = userName;
+		this.goodName = goodName;
+		this.price = price;
+		this.pictures = pictures;
+		this.freight = freight;
+		this.status = status;
+		this.classificationNameString = classificationNameString;
+		this.description = description;
 	}
 
 	@Override
@@ -136,6 +162,14 @@ public class GoodForm {
 
 	public void setClassificationNameString(String classificationNameString) {
 		this.classificationNameString = classificationNameString;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

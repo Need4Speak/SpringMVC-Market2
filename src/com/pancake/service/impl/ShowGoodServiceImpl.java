@@ -73,7 +73,7 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 		List<String> picList = SplitStrIntoList.run(good.getPictures());
 		GoodForm goodForm = new GoodForm(good.getGoodId(), good.getUser()
 				.getUserName(), good.getName(), good.getPrice(), picList,
-				good.getFreight(), good.getStatus(), good.getClassification().getClassificationName());
+				good.getFreight(), good.getStatus(), good.getClassification().getClassificationName(), good.getDescription());
 		return goodForm;
 	}
 	
