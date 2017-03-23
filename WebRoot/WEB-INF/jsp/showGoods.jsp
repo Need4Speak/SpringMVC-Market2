@@ -24,6 +24,7 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<style type="text/css">@import url(css/style.css);</style>
 	<style type="text/css">
 		body{ text-align:center} 
 		/* css 注释：这样设置了对象divcss5宽度为300px样式 */ 
@@ -53,12 +54,21 @@
     <div  class="divcssMiddle">
         <table width="250px" height="40px" border="1" cellspacing="0" cellpadding="0">
         	<tr>
-			    <td >最新</td>
+			    <td ><a href="showGoodsController">全部商品</a></td>
 			    <td><%@ include file="userLoginBar.jsp"%></td>
 		  	</tr>
         </table>
     </div>
-    
+    <div>
+    <ul id="nav"> 
+	<li><a href="showGoodsController?classification_id=2">电子产品</a></li> 
+	<li><a href="showGoodsController?classification_id=3">服装</a></li> 
+	<li><a href="showGoodsController?classification_id=4">化妆品</a></li> 
+	<li><a href="showGoodsController?classification_id=5">食品</a></li> 
+	<li><a href="showGoodsController?classification_id=6">图书</a></li> 
+	<li><a href="showGoodsController?classification_id=1">其他</a></li> 
+	</ul> 
+    </div>
     <div  class="divcssBottom">
     <c:forEach items="${goodForms}" var="goodForm">
     	<c:if test="${goodForm.status == 1}"> 

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pancake.dao.GoodDao;
+import com.pancake.entity.Classification;
 import com.pancake.entity.Good;
 import com.pancake.entity.OrderTable;
 import com.pancake.entity.User;
@@ -152,6 +153,12 @@ public class GoodDaoImpl implements GoodDao{
 		return findByProperty("user", user);
 	}
 	
+	@Override
+	public List findByClassification(Classification classification) {
+		// TODO Auto-generated method stub
+		return findByProperty("classification", classification);
+	}
+
 	public Good merge(Good detachedInstance) {
 //		log.debug("merging Good instance");
 		try {

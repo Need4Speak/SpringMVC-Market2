@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import javassist.compiler.Javac;
 
+import com.pancake.dao.impl.ClassificationDaoImpl;
 import com.pancake.dao.impl.GoodDaoImpl;
 import com.pancake.dao.impl.UserDaoImpl;
+import com.pancake.entity.Classification;
 import com.pancake.entity.Good;
 import com.pancake.entity.GoodForm;
 import com.pancake.service.ShowGoodService;
@@ -22,9 +24,10 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 	private GoodDaoImpl goodDaoImpl = new GoodDaoImpl();
 	private UserDaoImpl userDaoImpl = new UserDaoImpl();
 	private PageServiceImpl psi = new PageServiceImpl();
+	private ClassificationDaoImpl cdi = new ClassificationDaoImpl();
 
 	@Override
-	public List<GoodForm> showGoodWithSeller() {
+	public List<GoodForm> showGoodWithSeller(int classificationId) {
 
 		// Use to store good info with seller's info.
 		List<GoodForm> goodForms = new ArrayList<GoodForm>();
@@ -35,7 +38,15 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 
 		@SuppressWarnings("unchecked")
 		//ArrayList<Good> goodsList = (ArrayList<Good>) goodDaoImpl.findAll();
-		ArrayList<Good> goodsList = (ArrayList<Good>) goodDaoImpl.findAllByAddTime();
+		ArrayList<Good> goodsList = null;
+		if(classificationId == -1) {
+			goodsList = (ArrayList<Good>) goodDaoImpl.findAllByAddTime();
+		}
+		else {
+			Classification classification = cdi.findById(classificationId);
+			goodsList = (ArrayList<Good>) goodDaoImpl.findByClassification(classification);
+		}
+		
 		Iterator<Good> goodsListIterator = goodsList.iterator();
 		Good eachGood = null;
 

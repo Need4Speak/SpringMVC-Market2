@@ -34,8 +34,18 @@ public class ShowGoodsController {
 			HttpServletResponse response) {
 		logger.info("InputProductController called");
 		ModelAndView mav = new ModelAndView("showGoods");
-
-		List<GoodForm> goodForms = sgsi.showGoodWithSeller();
+		int classification_id;
+		if (request.getParameter("classification_id") != null && !request.getParameter("classification_id").equals("")) {
+			classification_id = Integer.parseInt(request.getParameter("classification_id"));
+			logger.info("request.getParameter(classification_id) != null");
+		}
+		else {
+			logger.info("request.getParameter(classification_id) = null");
+			classification_id = -1;
+		}
+		// -1 means find all goods.
+//		classification_id = 2;
+		List<GoodForm> goodForms = sgsi.showGoodWithSeller(classification_id);
 
 		mav.addObject("goodForms", goodForms);
 		return mav;
