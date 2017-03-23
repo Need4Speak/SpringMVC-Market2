@@ -2,10 +2,12 @@ package com.pancake.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.pancake.dao.impl.ClassificationDaoImpl;
 import com.pancake.entity.Classification;
 import com.pancake.service.ClassificationService;
-
+@Service
 public class ClassificationServiceImpl implements ClassificationService {
 	
 	private ClassificationDaoImpl cdi = new ClassificationDaoImpl();

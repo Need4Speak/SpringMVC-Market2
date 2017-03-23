@@ -10,7 +10,7 @@
 <body>
 
 <div id="global">
-<form:form commandName="good" action="good_save" method="post">
+<form:form commandName="good" action="good_save" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>发布商品</legend>
         <p>
@@ -22,8 +22,13 @@
             <form:input id="price" path="price"/>
         </p>
         <p>
-            <label for="pictures">图片: </label>
+            <label for="pictures">图片: </label> 
+            <!--  
             <form:input id="pictures" path="pictures"/>
+            -->
+            <input type="file" name="pictures[0]"/>
+            <input type="file" name="pictures[1]"/>
+            <input type="file" name="pictures[2]"/>
         </p>
        	<p>
             <label for="freight">运费: </label>

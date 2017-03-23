@@ -69,8 +69,8 @@
 			    <td>价格:${goodForm.price}</td>
 			  </tr>
 			  <tr>
-			    <td width="125px"><img src="images/${goodForm.pictures[0]}" border="0" width="120px" height="90px" /></td>
-			    <td><img src="images/${goodForm.pictures[1]}" border="0" width="120px" height="90px" /></td>
+			    <td width="125px"><img src="images/${goodForm.userName}/goodPics/${goodForm.pictures[0]}" border="0" width="120px" height="90px" /></td>
+			    <td><img src="images/${goodForm.userName}/goodPics/${goodForm.pictures[1]}" border="0" width="120px" height="90px" /></td>
 			  </tr>
 			  <tr height="50px">
 			    <td>商品名:${goodForm.goodName}</td>
