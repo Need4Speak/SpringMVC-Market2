@@ -11,7 +11,7 @@
             <generator class="increment" />
         </id>
         <many-to-one name="classification" class="com.pancake.entity.Classification" fetch="select">
-            <column name="classification_id" />
+            <column name="classification_id" not-null="true" />
         </many-to-one>
         <many-to-one name="user" class="com.pancake.entity.User" fetch="select">
             <column name="userId" />
@@ -35,6 +35,12 @@
             <column name="status">
                 <comment>1: can buy; 0: can't buy</comment>
             </column>
+        </property>
+        <property name="addTime" type="java.sql.Timestamp">
+            <column name="add_time" length="19" />
+        </property>
+        <property name="delTime" type="java.sql.Timestamp">
+            <column name="del_time" length="19" />
         </property>
         <set name="orderTables" inverse="true">
             <key>

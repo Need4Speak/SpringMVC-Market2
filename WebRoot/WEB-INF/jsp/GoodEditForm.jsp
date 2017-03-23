@@ -15,6 +15,7 @@
         <legend>修改商品信息</legend>
         <form:hidden path="goodId"/>
         <form:hidden path="status"/>
+        <form:hidden path="pictures"/>
         <p>
             <label for="name">商品名: </label>
             <form:input id="name" path="name"/>
@@ -22,10 +23,6 @@
         <p>
             <label for="price">价格： </label>
             <form:input id="price" path="price"/>
-        </p>
-        <p>
-            <label for="pictures">图片: </label>
-            <form:input id="pictures" path="pictures"/>
         </p>
        	<p>
             <label for="freight">运费: </label>

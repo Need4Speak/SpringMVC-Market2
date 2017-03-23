@@ -2,6 +2,7 @@ package com.pancake.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,9 +83,11 @@ public class GoodController {
 		// 存储图片到image下
 		List<String> piclList = storeImage(good, session, request);
 		String picString = PicFormatProcess.ListToStr(piclList);
-
+		logger.info("good name: " + good.getName());
+		Timestamp addTime = new Timestamp(System.currentTimeMillis());
+		Timestamp delTime = null;
 		Good goodInDB = new Good(good.getClassification(), good.getUser(), good.getName(), good.getPrice(), picString,
-				good.getFreight(), good.getDescription(), good.getStatus(), good.getOrderTables());
+				good.getFreight(), good.getDescription(), good.getStatus(), addTime, delTime, good.getOrderTables());
 		goodService.save(goodInDB);
 		return "redirect:/good_list";
 	}
@@ -123,6 +126,8 @@ public class GoodController {
 		// Don't no how to bound field "User user", use session temporary。
 		good.setUser(userService.getByName((String) session.getAttribute("userName")));
 		good.setClassification(goodService.get(good.getGoodId()).getClassification());
+		good.setAddTime(goodService.get(good.getGoodId()).getAddTime());
+		good.setDelTime(goodService.get(good.getGoodId()).getDelTime());
 		goodService.update(good);
 		return "redirect:/good_list";
 	}

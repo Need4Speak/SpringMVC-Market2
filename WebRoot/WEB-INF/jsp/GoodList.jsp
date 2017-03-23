@@ -16,8 +16,8 @@
 <tr>
     <th>名字</th>
     <th>价格</th>
-    <th>图片</th>
     <th>运费</th>
+    <th>发布时间</th>
     <th>&nbsp;</th>
 </tr>
 <c:forEach items="${goods}" var="good">
@@ -26,6 +26,7 @@
         <td>${good.name}</td>
         <td>${good.price}</td>
         <td>${good.freight}</td>
+        <td>${good.addTime}</td>
         <td><a href="good_edit/${good.goodId}">修改</a></td>
         <td><a href="good_delete/${good.goodId}">删除</a></td>
     </tr>

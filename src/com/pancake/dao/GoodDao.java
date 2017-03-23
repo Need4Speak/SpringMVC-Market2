@@ -12,6 +12,7 @@ public interface GoodDao {
 	public void delete(Good persistentInstance);
 	public Good findById(java.lang.Integer id);
 	public List findAll();
+	public List findAllByAddTime();
 	public List findByUser(User user);
 	public Good merge(Good detachedInstance);
 	public List<Good> queryPageList(int offset, int length);

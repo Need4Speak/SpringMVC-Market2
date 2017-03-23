@@ -112,12 +112,31 @@ public class GoodDaoImpl implements GoodDao{
 		}
 	}
 	
+	@Override
+	public List findAllByAddTime() {
+		//log.debug("finding all Good instances");
+		try {
+			Session session = HibernateSessionFactory.getSession();
+//			Transaction transaction = session.beginTransaction();
+			
+			String queryString = "from Good order by add_time desc";
+			Query queryObject = session.createQuery(queryString);
+			
+//			transaction.commit();
+//			HibernateSessionFactory.closeSession();
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			//log.error("find all failed", re);
+			throw re;
+		}
+	}
+
 	public List findByProperty(String propertyName, Object value) {
 //		log.debug("finding Good instance with property: " + propertyName
 //				+ ", value: " + value);
 		try {
 			String queryString = "from Good as model where model."
-					+ propertyName + "= ?";
+					+ propertyName + "= ?  order by add_time desc";
 			Session session = HibernateSessionFactory.getSession();
 			
 			Query queryObject = session.createQuery(queryString);

@@ -34,7 +34,8 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 		// UserDaoImpl userDaoImpl = new UserDaoImpl();
 
 		@SuppressWarnings("unchecked")
-		ArrayList<Good> goodsList = (ArrayList<Good>) goodDaoImpl.findAll();
+		//ArrayList<Good> goodsList = (ArrayList<Good>) goodDaoImpl.findAll();
+		ArrayList<Good> goodsList = (ArrayList<Good>) goodDaoImpl.findAllByAddTime();
 		Iterator<Good> goodsListIterator = goodsList.iterator();
 		Good eachGood = null;
 
