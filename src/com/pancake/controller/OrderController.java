@@ -31,8 +31,7 @@ import com.pancake.util.SplitStrIntoList;
 
 @Controller
 public class OrderController {
-	private static final Log logger = LogFactory
-			.getLog(ShowGoodsController.class);
+	private static final Log logger = LogFactory.getLog(ShowGoodsController.class);
 	@Autowired
 	private ShowGoodService sgsi;
 	@Autowired
@@ -41,8 +40,7 @@ public class OrderController {
 	private ShowOrderService soService;
 
 	@RequestMapping(value = "/tryPlaceOrderController")
-	public ModelAndView tryPlaceOrder(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView tryPlaceOrder(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("placeOrderController called");
 		ModelAndView mav = new ModelAndView("tryPlaceOrder");
 
@@ -54,8 +52,7 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/placeOrderController")
-	public ModelAndView placeOrder(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView placeOrder(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("placeOrderController called");
 		ModelAndView mav = new ModelAndView("showOrder");
 
@@ -64,12 +61,10 @@ public class OrderController {
 
 		String address = request.getParameter("address").trim();
 		String description = request.getParameter("description").trim();
-		String buyerName = (String) request.getSession().getAttribute(
-				"userName");
+		String buyerName = (String) request.getSession().getAttribute("userName");
 
 		ShowOrderServiceImpl sosi = new ShowOrderServiceImpl();
-		OrderTable orderForm = sosi.createOrder(buyerName, goodId, address,
-				description);
+		OrderTable orderForm = sosi.createOrder(buyerName, goodId, address, description);
 
 		mav.addObject("goodForm", goodForm);
 		mav.addObject("orderForm", orderForm);
@@ -80,7 +75,7 @@ public class OrderController {
 	public ModelAndView orderList(HttpSession session, HttpServletRequest request) {
 		logger.info("orderListController called");
 		ModelAndView mav = new ModelAndView("orderList");
-		
+
 		int orderStatus = Integer.parseInt(request.getParameter("orderStatus"));
 		String userName = ((String) session.getAttribute("userName")).trim();
 		List<OrderTable> orderList = soService.getOrderByBuyerName(userName);
@@ -92,44 +87,58 @@ public class OrderController {
 			order.getGood().setPictures(picList.get(0));
 			if (-1 != orderStatus && order.getStatus() != orderStatus) {
 				iterator.remove();
-			}			
+			}
 		}
-//		for (OrderTable order : orderList) {
-//			// 将某件商品的第一张图片存入 pictures 属性里，用于显示。
-//			List<String> picList = SplitStrIntoList.run(order.getGood().getPictures());
-//			order.getGood().setPictures(picList.get(0));
-//			if (-1 != orderStatus && order.getStatus() != orderStatus) {
-//				orderList.remove(order);
-//			}
-//		}
 		mav.addObject("orderList", orderList);
 		return mav;
 	}
-	
-	@RequestMapping(value="/orderCancelController/{orderId}")
+
+	@RequestMapping(value = "/SellerOrderListController")
+	public ModelAndView sellerOrderList(HttpSession session, HttpServletRequest request) {
+		logger.info("orderListController called");
+		ModelAndView mav = new ModelAndView("orderListSell");
+
+		int orderStatus = Integer.parseInt(request.getParameter("orderStatus"));
+		String userName = ((String) session.getAttribute("userName")).trim();
+		List<OrderTable> orderList = soService.getOrderBySellerName(userName);
+		OrderTable order = null;
+		for (Iterator<OrderTable> iterator = orderList.iterator(); iterator.hasNext();) {
+			order = (OrderTable) iterator.next();
+			// 将某件商品的第一张图片存入 pictures 属性里，用于显示。
+			List<String> picList = SplitStrIntoList.run(order.getGood().getPictures());
+			order.getGood().setPictures(picList.get(0));
+			if (-1 != orderStatus && order.getStatus() != orderStatus) {
+				iterator.remove();
+			}
+		}
+		mav.addObject("orderList", orderList);
+		return mav;
+	}
+
+	@RequestMapping(value = "/orderCancelController/{orderId}")
 	public String orderCancel(Model model, @PathVariable int orderId) {
 		logger.info("orderCancelController called");
 		OrderTable order = soService.getOrderById(orderId);
-		// Set the status of order to 0, 0 means cancel. 
+		// Set the status of order to 0, 0 means cancel.
 		order.setStatus(0);
 		Timestamp cancelTime = new Timestamp(System.currentTimeMillis());
 		order.setCancelTime(cancelTime);
 		soService.update(order);
 		return "redirect:/orderListController?orderStatus=1";
-		
+
 	}
-	
-	@RequestMapping(value="/orderDetailController/{orderId}")
+
+	@RequestMapping(value = "/orderDetailController/{orderId}")
 	public ModelAndView orderDetail(Model model, @PathVariable int orderId) {
 		logger.info("orderCancelController called");
 		OrderTable order = soService.getOrderById(orderId);
 		GoodForm goodForm = sgsi.showGoodInfo(order.getGood().getGoodId());
-		
+
 		ModelAndView mav = new ModelAndView("orderDetail");
 		mav.addObject("goodForm", goodForm);
 		mav.addObject("order", order);
 
 		return mav;
-		
+
 	}
 }

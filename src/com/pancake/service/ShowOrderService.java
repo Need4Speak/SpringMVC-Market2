@@ -8,5 +8,6 @@ public interface ShowOrderService {
 	public OrderTable createOrder(String buyerName, int goodId, String address,
 			String description);
 	public List<OrderTable> getOrderByBuyerName(String userName);
+	public List<OrderTable> getOrderBySellerName(String userName);
 	public OrderTable update(OrderTable order);
 }

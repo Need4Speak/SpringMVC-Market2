@@ -26,8 +26,7 @@ public class ShowOrderServiceImpl implements ShowOrderService {
 		return order;
 	}
 
-	public OrderTable createOrder(String buyerName, int goodId, String address,
-			String description) {
+	public OrderTable createOrder(String buyerName, int goodId, String address, String description) {
 		Good aGood = gdi.findById(goodId);
 		User aBuyer = udi.findByUserName(buyerName);
 		User aSeller = aGood.getUser();
@@ -40,9 +39,8 @@ public class ShowOrderServiceImpl implements ShowOrderService {
 		int status = 1; // 1 means waiting for purchase.
 		String deliveryAddress = address;
 		double freight = aGood.getFreight();
-		OrderTable aOrder = new OrderTable(aBuyer, aSeller, aGood,
-				creationTime, cancelTime, status, deliveryAddress, freight,
-				description);
+		OrderTable aOrder = new OrderTable(aBuyer, aSeller, aGood, creationTime, cancelTime, status, deliveryAddress,
+				freight, description);
 		otdi.save(aOrder);
 		return aOrder;
 	}
@@ -54,9 +52,15 @@ public class ShowOrderServiceImpl implements ShowOrderService {
 	}
 
 	@Override
+	public List<OrderTable> getOrderBySellerName(String userName) {
+		User user = udi.findByUserName(userName);
+		return otdi.findBySeller(user);
+	}
+
+	@Override
 	public OrderTable update(OrderTable order) {
 		otdi.merge(order);
 		return order;
 	}
-	
+
 }
