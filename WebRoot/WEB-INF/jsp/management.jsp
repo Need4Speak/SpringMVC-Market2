@@ -14,6 +14,8 @@
             <a href="good_list">发布管理</a> <br>
             <a href="orderListController?orderStatus=1">买到的商品</a> <br>
             <a href="SellerOrderListController?orderStatus=1">卖出的商品</a> <br>
+            <a href="userInfoController">我的信息</a> <br>
+            
     </fieldset>
 </form>
 </div>
