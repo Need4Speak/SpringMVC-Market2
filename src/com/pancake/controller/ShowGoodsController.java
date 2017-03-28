@@ -55,12 +55,18 @@ public class ShowGoodsController {
 	public ModelAndView goodInfo(HttpServletRequest request,
 			HttpServletResponse response) {
 		logger.info("InputProductController called");
-		ModelAndView mav = new ModelAndView("goodInfo");
+		ModelAndView mav = null;
 
 		int goodId = Integer.parseInt(request.getParameter("goodId"));
 		GoodForm goodForm = sgsi.showGoodInfo(goodId);
-
-		mav.addObject("goodForm", goodForm);
+		
+		if (null != goodForm) {
+			mav = new ModelAndView("goodInfo");
+			mav.addObject("goodForm", goodForm);
+		}
+		else {
+			mav = new ModelAndView("goodNotReady");
+		}
 		return mav;
 	}
 	

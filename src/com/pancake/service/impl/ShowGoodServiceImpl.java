@@ -82,10 +82,14 @@ public class ShowGoodServiceImpl implements ShowGoodService {
 	@Override
 	public GoodForm showGoodInfo(java.lang.Integer goodId) {
 		Good good = goodDaoImpl.findById(goodId);
-		List<String> picList = SplitStrIntoList.run(good.getPictures());
-		GoodForm goodForm = new GoodForm(good.getGoodId(), good.getUser()
-				.getUserName(), good.getName(), good.getPrice(), picList,
-				good.getFreight(), good.getStatus(), good.getClassification().getClassificationName(), good.getDescription());
+		GoodForm goodForm = null;
+		if(null != good) {
+			List<String> picList = SplitStrIntoList.run(good.getPictures());
+			goodForm = new GoodForm(good.getGoodId(), good.getUser()
+					.getUserName(), good.getName(), good.getPrice(), picList,
+					good.getFreight(), good.getStatus(), good.getClassification().getClassificationName(), good.getDescription());
+		}
+
 		return goodForm;
 	}
 	
