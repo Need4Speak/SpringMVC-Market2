@@ -9,29 +9,28 @@
 <body>
 
 <div id="global">
-<h1>订单列表</h1>
+<h1>已买</h1>
 <a href="showGoodsController">返回首页</a><br/>
 <c:forEach items="${orderList}" var="order">
 <table>
-	<tr>
-	${order.good.pictures}
-	</tr>
     <tr>
+    	<td><img src="images/${order.userByBuyerId.userName}/goodPics/${order.good.pictures}" border="0" width="120px" height="90px" /></td>
         <td>${order.good.name}</td>
         <td>${order.good.price + order.good.freight}</td>
-        <td>
+        
         <c:choose>
 		    <c:when test="${order.status == 0}">
-		       	订单已取
+		       	<td>订单已取消</td>
 		    </c:when>
 		    <c:when test="${order.status == 1}">
-		       	去支付
+		       	<td>去支付</td>
+		       	<td><a href="orderCancelController/${order.orderId}">取消</a></td>
 		    </c:when>
 		    <c:when test="${order.status == 2}">
-		       	已支付
+		       	<td>已支付</td>
 		    </c:when>
 		</c:choose>
-		</td>
+		
     </tr>
 </table>
 <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />

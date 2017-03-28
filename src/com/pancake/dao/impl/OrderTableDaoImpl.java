@@ -1,6 +1,5 @@
 package com.pancake.dao.impl;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.LockOptions;
@@ -114,7 +113,7 @@ public class OrderTableDaoImpl implements OrderTableDao {
 		// + ", value: " + value);
 		try {
 			String queryString = "from OrderTable as model where model."
-					+ propertyName + "= ?";
+					+ propertyName + "= ?   order by creationTime desc";
 			Session session = HibernateSessionFactory.getSession();
 
 			Query queryObject = session.createQuery(queryString);
@@ -165,7 +164,7 @@ public class OrderTableDaoImpl implements OrderTableDao {
 	public List findAll() {
 		// log.debug("finding all OrderTable instances");
 		try {
-			String queryString = "from OrderTable";
+			String queryString = "from OrderTable order by creationTime desc";
 			Session session = HibernateSessionFactory.getSession();
 
 			Query queryObject = session.createQuery(queryString);
@@ -199,6 +198,25 @@ public class OrderTableDaoImpl implements OrderTableDao {
         }
         
         return entitylist;
+	}
+
+	@Override
+	public OrderTable merge(OrderTable detachedInstance) {
+//		log.debug("merging OrderTable instance");
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			OrderTable result = (OrderTable) session.merge(detachedInstance);
+			
+			transaction.commit();
+			HibernateSessionFactory.closeSession();
+//			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+//			log.error("merge failed", re);
+			throw re;
+		}
 	}
 
 }

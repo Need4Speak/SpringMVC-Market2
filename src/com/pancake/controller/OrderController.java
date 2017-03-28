@@ -10,6 +10,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +22,7 @@ import com.pancake.service.ShowOrderService;
 import com.pancake.service.UserService;
 import com.pancake.service.impl.ShowGoodServiceImpl;
 import com.pancake.service.impl.ShowOrderServiceImpl;
+import com.pancake.util.SplitStrIntoList;
 
 @Controller
 public class OrderController {
@@ -75,9 +78,23 @@ public class OrderController {
 
 		String userName = ((String) session.getAttribute("userName")).trim();
 		List<OrderTable> orderList = soService.getOrderByBuyerName(userName);
-
+		
+		for (OrderTable order : orderList) {
+			List<String> picList = SplitStrIntoList.run(order.getGood().getPictures());
+			order.getGood().setPictures(picList.get(0));
+		}
 		mav.addObject("orderList", orderList);
 		return mav;
+	}
+	
+	@RequestMapping(value="/orderCancelController/{orderId}")
+	public String orderCancel(Model model, @PathVariable int orderId) {
+		OrderTable order = soService.getOrderById(orderId);
+		// Set the status of order to 0, 0 means cancel. 
+		order.setStatus(0);
+		soService.update(order);
+		return "redirect:/orderListController";
+		
 	}
 
 }

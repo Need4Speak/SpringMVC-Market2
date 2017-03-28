@@ -1,14 +1,7 @@
 package com.pancake.dao;
 
 import java.util.List;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Example;
-
 import com.pancake.entity.OrderTable;
-import com.pancake.util.HibernateSessionFactory;
 
 public interface OrderTableDao {
 	public void save(OrderTable transientInstance);
@@ -25,4 +18,5 @@ public interface OrderTableDao {
 	public List findByDescription(Object description);
 	public List findAll();
 	public List<OrderTable> queryPageList(int offset, int length);
+	public OrderTable merge(OrderTable detachedInstance);
 }

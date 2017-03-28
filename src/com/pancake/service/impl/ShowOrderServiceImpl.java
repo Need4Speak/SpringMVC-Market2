@@ -52,5 +52,11 @@ public class ShowOrderServiceImpl implements ShowOrderService {
 		User user = udi.findByUserName(userName);
 		return otdi.findByBuyer(user);
 	}
+
+	@Override
+	public OrderTable update(OrderTable order) {
+		otdi.merge(order);
+		return order;
+	}
 	
 }
