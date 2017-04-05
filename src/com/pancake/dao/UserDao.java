@@ -10,4 +10,5 @@ public interface UserDao {
 	public User findById(java.lang.Integer id);
 	public List findAll();
 	public User findByUserName(Object userName);
+	public User merge(User detachedInstance);
 }

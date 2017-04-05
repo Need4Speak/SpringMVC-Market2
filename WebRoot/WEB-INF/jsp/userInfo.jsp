@@ -23,10 +23,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    用户名：${user.userName} <br>
-    联系方式：${user.phoneNumber} <br>
-    性别：${user.gender} <br>
-    头像：	<img src="images/${goodForm.userName}/head/${user.userPhoto}" border="0" width="120px" height="90px" />
-    
+  	<form action="userUpdateController" method="post" enctype="multipart/form-data">
+  		<input type="hidden" name="userId" value="${user.userId}">
+	    用户名：<input type="text" name="userName" value="${user.userName}">  <br>
+	    联系方式：<input type="text" name="phoneNumber" value="${user.phoneNumber}"> <br>
+	    性别：<input type="text" name="gender" value="${user.gender}"> <br>
+	    头像：	<img src="images/${sessionScope.userName}/head/${user.userPhoto}" border="0" width="120px" height="90px" />
+	  <input type="file" value="上传图片" name="userPhoto"/> <br>
+	  <input id="submit" type="submit" tabindex="5" value="确认修改">
+    </form>
   </body>
 </html>

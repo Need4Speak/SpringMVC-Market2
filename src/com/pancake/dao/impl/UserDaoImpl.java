@@ -120,4 +120,25 @@ public class UserDaoImpl implements UserDao{
 		HibernateSessionFactory.closeSession();
 		return user;
 	}
+
+	@Override
+	public User merge(User detachedInstance) {
+//		log.debug("merging User instance");
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			User result = (User) session.merge(detachedInstance);
+			
+			transaction.commit();
+			HibernateSessionFactory.closeSession();
+//			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+//			log.error("merge failed", re);
+			throw re;
+		}
+	}
+	
+	
 }
