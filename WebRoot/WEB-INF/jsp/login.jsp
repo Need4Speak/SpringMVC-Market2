@@ -25,6 +25,7 @@
     }
     
     button {
+    	background: #C9302C;
         margin-top: 20px;
     }
     </style>

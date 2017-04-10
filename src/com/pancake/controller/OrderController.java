@@ -42,7 +42,7 @@ public class OrderController {
 	@RequestMapping(value = "/tryPlaceOrderController")
 	public ModelAndView tryPlaceOrder(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("placeOrderController called");
-		ModelAndView mav = new ModelAndView("tryPlaceOrder");
+		ModelAndView mav = new ModelAndView("try_place_order");
 
 		int goodId = Integer.parseInt(request.getParameter("goodId"));
 		GoodForm goodForm = sgsi.showGoodInfo(goodId);
