@@ -49,7 +49,7 @@ public class GoodController {
 	@RequestMapping(value = "/good_input")
 	public String inputGood(Model model) {
 		model.addAttribute("good", new Good());
-		return "GoodAddForm";
+		return "good_add_form";
 	}
 
 	@RequestMapping(value = "/good_edit/{id}")
